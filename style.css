@@ -1,0 +1,167 @@
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:radial-gradient(circle at center center, #4393C3, #2166AC, #053061);
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --font-1: 'Economica', sans-serif;
+    --font-2: 'Oswald', sans-serif;
+    --font-3: 'Wallpoet', cursive;
+}
+:before, 
+:after{
+    content:'';
+    position:absolute;
+}
+span{
+    display:inline-block;
+}
+ul{
+    list-style:none;
+}
+.jd__main{
+    position:absolute;
+    width:728px;
+    height:486px;
+    left:50%;
+    transform:translateX(-50%);
+    top:93px;
+    box-shadow:0 0 10px 20px rgba(255,255,255,.1) inset, 0 0 0 1px steelblue;
+    font-family:var(--font-2);
+    color:#222;
+}
+.jd__inner__xat{
+    width:728px;
+    height:486px;
+    position:relative;
+}
+.jd__title{
+    width:254px;
+    height:135px;
+    position:absolute;
+    top:144px;
+    left:276px;
+}
+.jd__title:after{
+    width:100%;
+    height:2px;
+    background:#FFF;
+    left:0;
+    bottom:5px;
+}
+.jd__title span{
+    width:80px;
+    height:24px;
+    line-height:25px;
+    text-align:center;
+    background:#FFF;
+    font-size:.75em;
+}
+.jd__title h1{
+    font-size:1.2em;
+}
+.jd__title p{
+    color:#FFF;
+    font-family:var(--font-1);
+    font-size:.7em;
+    letter-spacing:3px;
+}
+.jd__title h2{
+    width:250px;
+    text-align:center;
+    position:relative;
+    font-family:var(--font-3);
+    color:#22274E;
+    font-size:2em;
+}
+.jd__title h2:before, 
+.jd__title h2:after{
+    width:50px;
+    height:1px;
+    background:#FFF;
+    top:14px;
+    box-shadow:0 1px #FFF, 0 5px #FFF; 
+}
+.jd__title h2:before{
+    left:0;
+}
+.jd__title h2:after{
+    right:0;
+}
+ul{
+    width:250px;
+    height:24px;
+    display:flex;
+    justify-content:space-between;
+    overflow:hidden;
+    box-shadow:0 0 0 2px #111;
+    margin-left:2px;
+}
+ul li{
+    width:calc(100% / 10);
+    height:24px;
+    line-height:24px;
+    text-align:center;
+    background:#222;
+    color:#FFF;
+    font-size:.85em;
+    font-family:var(--font-1);
+    text-shadow:0 24px #222, 0 48px #FFF;
+    box-shadow:0 24px #FFF, 0 48px #222;
+    animation:loop 3s linear infinite;
+}
+ul li:nth-child(even){
+    background:#FFF;
+    color:#222;
+    text-shadow:0 24px #FFF, 0 48px #222;
+    box-shadow:0 24px #222, 0 48px #FFF;
+}
+ul li:nth-child(1){
+    animation:loop 3s linear infinite;
+}
+ul li:nth-child(2){
+    animation:loop 2.5s linear infinite;
+}
+ul li:nth-child(3){
+    animation:loop 3.3s linear infinite;
+}
+ul li:nth-child(4){
+    animation:loop 4s linear infinite;
+}
+ul li:nth-child(5){
+    animation:loop 2.5s linear infinite;
+}
+ul li:nth-child(6){
+    animation:loop 3.2s linear infinite;
+}
+ul li:nth-child(7){
+    animation:loop 3.8s linear infinite;
+}
+ul li:nth-child(8){
+    animation:loop 2.7s linear infinite;
+}
+ul li:nth-child(9){
+    animation:loop 3.4s linear infinite;
+}
+ul li:nth-child(10){
+    animation:loop 2.5s linear infinite;
+}
+
+
+@keyframes loop{
+    0%{
+        margin-top:0;
+    }
+    25%{
+        margin-top:-48px;
+    }
+    100%{
+        margin-top:-48px;
+    }
+}
