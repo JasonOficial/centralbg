@@ -1,0 +1,133 @@
+body{
+    background:radial-gradient(circle at center 400px, #E4344B ,#8C152B), #E4344B;
+    overflow:hidden;
+    min-height:100vw;
+    min-height:100vh;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-user-select:none;
+    user-select:none;
+}
+:root{
+    --font-1: 'Cuprum', sans-serif;
+    --font-2: 'Fjalla', sans-serif;
+    --font-3: 'Sansita', sans-serif;
+    --font-4: 'Six Caps', sans-serif;
+    --font-5: 'Squada One', cursive;
+}
+:before, 
+:after{
+    content:'';
+    position:absolute;
+}
+.jd__main{
+    position:absolute;
+    width:728px;
+    height:486px;
+    top:80px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#D53543;
+}
+.jd__inner__xat{
+    width:100%;
+    height:100%;
+    position:relative;
+}
+.jd__main:before, 
+.jd__main:after,
+.jd__inner__xat:before, 
+.jd__inner__xat:after{
+    width:100px;
+    height:100px;
+    background:transparent;
+}
+.jd__main:before{
+    top:-6px;
+    left:-6px;
+    border-left:solid 1px #111;
+    border-top:solid 1px #111;
+}
+.jd__main:after{
+    top:-6px;
+    right:-6px;
+    border-right:solid 1px #111;
+    border-top:solid 1px #111;
+}
+.jd__inner__xat:before{
+    bottom:-6px;
+    left:-6px;
+    border-left:solid 1px #111;
+    border-bottom:solid 1px #111;
+}
+.jd__inner__xat:after{
+    bottom:-6px;
+    right:-6px;
+    border-right:solid 1px #111;
+    border-bottom:solid 1px #111;
+}
+.jd__title{
+    width:135px;
+    height:75px;
+    color:#8C152B;
+    position:absolute;
+    top:150px;
+    left:365px;
+    font-family:var(--font-3);
+    font-size:1em;
+}
+.jd__title h1{
+    font-weight:lighter;
+    font-size:1.2em;
+}
+.jd__xat{
+    width:135px;
+    height:30px;
+    box-shadow:0 0 0 1px #8C152B;
+    margin-left:1px;
+    overflow:hidden;
+    display:flex;
+}
+.jd__xat h2{
+    width:30px;
+    height:30px;
+    line-height:26px;
+    background:#8C152B;
+    color:#E4344B;
+    text-align:center;
+    font-size:2em;
+    display:inline-block;
+    margin-top:0;
+    box-shadow:0 30px #222, 0 60px #8C152B;
+    text-shadow:0 30px #666, 0 60px #E4344B;
+    animation:loop 3s ease-out infinite;
+}
+@keyframes loop{
+    0%{
+        margin-top:0;
+    }
+    15%{
+        margin-top:-30px;
+    }
+    35%{
+        margin-top:-30px;
+    }
+    50%{
+        margin-top:-60px;
+    }
+    100%{
+        margin-top:-60px;
+    }
+}
+.jd__xat span{
+    width:105px;
+    line-height:28px;
+    font-size:1.4em;
+    padding-left:5px;
+}
+.jd__title p{
+    margin-top:5px;
+}
