@@ -15,6 +15,8 @@ var arrTxt = [
     'LOUIS',
     'KAKO',
     'KIETINHA',
+    'BFFA',
+    'DJ FUNNY',
     '❀',
     '❤',
     '✮'
