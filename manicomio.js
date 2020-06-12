@@ -10,6 +10,11 @@ var arrTxt = [
     'DANI', 
     'MAYC', 
     'ERIC',
+    'SERGIO',
+    'DRIKA',
+    'LOUIS',
+    'KAKO',
+    'KIETINHA',
     '❀',
     '❤',
     '✮'
