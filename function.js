@@ -1,58 +1,36 @@
 //alert("ok");
-var canvas = document.getElementById("jd__canvas");
-var ctx = canvas.getContext("2d"), 
-    radius = 30, 
-    maxSfere = 500,
-    sfereArr = [],
-    maxRadius = 50,
-    mouse = {
-      x: undefined,
-      y: undefined
-    },
-    colores = [
-        '#9B9473',
-        '#92C5DE',
-        '#D6604D',
-        '#F7F7F7',
-        '#2C71B7',
-        '#3B76B5',
-        '#AB3D4B',
-    ];
+var canvas = document.getElementById("jd__canvas"),
+    ctx = canvas.getContext("2d"),
+    arrObj = [],
+    maxBall = 150,
+    maxRadius = 4,
+    colorBall = "#00A2FF",
+    colorLine = "rgba(0,162,255,.2)";
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-window.addEventListener('mousemove', function(event){
-    
-    mouse.x = event.x;
-    mouse.y = event.y;
-    console.log(mouse);
-});
-
 window.addEventListener('resize', function(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
-    init();
 });
 
-function Sfere(x, y, vx, vy, radius){
+function itemObj(x, y, vx, vy, radius){
     this.x = x;
     this.y = y;
     this.vx = vx;
     this.vy = vy;
     this.radius = radius;
-    this.minRadius = radius;
-    this.color = colores[Math.floor(Math.random() * colores.length)];
+    this.colorize = colorBall;
     
-    this.paint = function(){
+    this.drawBall = function (){
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.stroke();
+        ctx.fillStyle = this.colorize;
         ctx.fill();
     }
-    this.update = function(){
+    
+    this.update = function (){
         if(this.x + this.radius > innerWidth || this.x - this.radius < 0){
             this.vx = - this.vx;
         }
@@ -63,54 +41,47 @@ function Sfere(x, y, vx, vy, radius){
         this.x += this.vx;
         this.y += this.vy;
         
-        if(mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 && mouse.y - this.y > -50){
-            
-            if(this.radius < maxRadius){
-                this.radius += 1;
-            }
-        }else if(this.radius > this.minRadius){
-            this.radius -= 1;
-        }
-        
-        this.paint();
+        this.drawBall();
     }
 }
 
 function init(){
-    sfereArr = [];
-    for(var i = 0; i < maxSfere; i++){
-        var radius = Math.random() * 3 + 1,
-            x = Math.random() * (innerWidth - radius * 2) + radius, 
+    for(var i = 0; i < maxBall; i++){
+        var radius = Math.random() * maxRadius,
+            x = Math.random() * (innerWidth - radius * 2) + radius,
             y = Math.random() * (innerHeight - radius * 2) + radius,
             vx = (Math.random() - 0.5),
             vy = (Math.random() - 0.5);
-        sfereArr.push(new Sfere(x, y, vx, vy, radius));
+        arrObj.push(new itemObj(x, y, vx, vy, radius));
     }
-    //animate();
+}
+
+function connect(){
+    for(var a = 0; a < arrObj.length; a++){
+        for(var b = a; b < arrObj.length; b++){
+            var gap = ((arrObj[a].x - arrObj[b].x) * (arrObj[a].x - arrObj[b].x)) 
+            + ((arrObj[a].y - arrObj[b].y) * (arrObj[a].y - arrObj[b].y)); 
+            if(gap < (canvas.width/10) * (canvas.height/10)){
+                ctx.strokeStyle = colorLine;
+                ctx.beginPath();
+                ctx.lineWidth = 1;
+                ctx.moveTo(arrObj[a].x, arrObj[a].y);
+                ctx.lineTo(arrObj[b].x, arrObj[b].y);
+                ctx.stroke();
+            }
+        }
+    }
 }
 
 function animate(){
     requestAnimationFrame(animate);
+    
     ctx.clearRect(0, 0, innerWidth, innerHeight);
-    
-    for(var i = 0; i < sfereArr.length; i++){
-        sfereArr[i].update();
+    for(var i = 0; i < arrObj.length; i++){
+        arrObj[i].update();
     }
-    
+    connect();
 }
-animate();
+
 init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-console.log(canvas.height);
+animate();
