@@ -1,0 +1,123 @@
+body{
+    background:linear-gradient(to bottom right, #A10000, #CB5252), #A10000;
+    min-width:100vw;
+    min-height:100vh;
+    overflow:hidden;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --font-1: 'Aclonica', sans-serif;
+    --font-2: 'Combo', cursive;
+    --font-3: 'Cookie', cursive;
+    --font-4: 'Courgette', cursive;
+    --font-5: 'Niconne', cursive;
+}
+canvas{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+:before, 
+:after{
+    content:'';
+    position:absolute;
+}
+.jd__main{
+    width:728px;
+    height:486px;
+    position:absolute;
+    top:80px;
+    left:50%;
+    transform:translateX(-50%);
+    background:linear-gradient(to bottom right, #C22727, #E24343), #C22727;
+    font-family:var(--font-1);
+    box-shadow:0 0 0 5px #111;
+}
+.jd__inner__xat{
+    width:100%;
+    height:100%;
+    position:relative;
+}
+
+.jd__title{
+    width:220px;
+    height:65px;
+    color:#872323;
+    top:120px;
+    left:300px;
+    position:absolute;
+    text-align:center;
+}
+.jd__letter{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.jd__letter > div{
+    width:70px;
+    height:26px;
+    background:#222;
+    border-radius:2px;
+    overflow:hidden;
+}
+.jd__letter > div span{
+    display:block;
+    line-height:26px;
+    font-size:.8em;
+    color:#FF7A7A;
+    width:70px;
+    text-shadow:-70px 0 #FF7A7A, -140px 0 #FF7A7A;
+    animation: mover 5s ease-out infinite;
+}
+.jd__letter h1{
+    width:calc(100% - 80px);
+    font-family:var(--font-3);
+    font-size:2.7em;
+    line-height:40px;
+}
+.jd__title p{
+    font-size:1.1em;
+    font-family:var(--font-2);
+    color:#FF7A7A;
+    text-shadow:1px 1px 1px rgba(0,0,0,.1);
+    height:22px;
+    width:100%;
+    position:relative;
+}
+.jd__title p:before, 
+.jd__title p:after{
+    width:160px;
+    height:1px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#FF7A7A;
+}
+.jd__title p:before{
+    top:0;
+}
+.jd__title p:after{
+    bottom:0;
+}
+@keyframes mover{
+    0%{
+        margin-left:0;
+    }
+    25%{
+        margin-left:70px;
+    }
+    35%{
+        margin-left:70px;
+    }
+    50%{
+        margin-left:140px;
+    }
+    100%{
+        margin-left:140px;
+    }
+}
