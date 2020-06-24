@@ -1,5 +1,5 @@
 body{
-    background:linear-gradient(to bottom right, #A10000, #CB5252), #A10000;
+    background:radial-gradient(70vw 50vh ellipse at center 40vh, #DF4D52, #CE1415), #CE1415;
     min-width:100vw;
     min-height:100vh;
     overflow:hidden;
@@ -14,7 +14,10 @@ body{
     --font-2: 'Combo', cursive;
     --font-3: 'Cookie', cursive;
     --font-4: 'Courgette', cursive;
-    --font-5: 'Niconne', cursive;
+    --font-5: 'Aclonica', sans-serif;
+    --font-6: 'Concert One', cursive;
+    --font-7: 'Oswald', sans-serif;
+    --font-8: 'Roboto', sans-serif;
 }
 canvas{
     position:absolute;
@@ -34,76 +37,93 @@ canvas{
     top:80px;
     left:50%;
     transform:translateX(-50%);
-    background:linear-gradient(to bottom right, #C22727, #E24343), #C22727;
-    font-family:var(--font-1);
-    box-shadow:0 0 0 5px #111;
+    background:#EC2F33;
+    font-family:var(--font-7);
 }
 .jd__inner__xat{
     width:100%;
     height:100%;
     position:relative;
 }
-
+.jd__inner__xat:before, 
+.jd__inner__xat:after{
+    width:120px;
+    height:120px;
+    background:transparent;
+}
+.jd__inner__xat:before{
+    border-left:solid 1px rgba(0,0,0,.5);
+    border-top:solid 1px rgba(0,0,0,.5);
+    left:-5px;
+    top:-5px;
+}
+.jd__inner__xat:after{
+    border-right:solid 1px rgba(0,0,0,.5);
+    border-bottom:solid 1px rgba(0,0,0,.5);
+    right:-5px;
+    bottom:-5px;
+}
 .jd__title{
     width:220px;
-    height:65px;
+    height:105px;
     color:#872323;
     top:120px;
     left:300px;
     position:absolute;
     text-align:center;
+    position:relative;
+    padding:5px;
+    box-shadow:0 0 0 1px #B43434;
+}
+.jd__title:after{
+    width:230px;
+    height:115px;
+    border:solid 1px #B43434;
+    top:-6px;
+    left:-6px;
 }
 .jd__letter{
     width:100%;
-    display:flex;
+    display:block;
     align-items:center;
     justify-content:center;
 }
 .jd__letter > div{
     width:70px;
     height:26px;
-    background:#222;
-    border-radius:2px;
+    background:#872323;
+    border:solid 2px #872323;
     overflow:hidden;
 }
 .jd__letter > div span{
     display:block;
-    line-height:26px;
-    font-size:.8em;
+    line-height:22px;
+    font-size:.9em;
     color:#FF7A7A;
     width:70px;
+    height:26px;
     text-shadow:-70px 0 #FF7A7A, -140px 0 #FF7A7A;
     animation: mover 5s ease-out infinite;
 }
 .jd__letter h1{
     width:calc(100% - 80px);
-    font-family:var(--font-3);
-    font-size:2.7em;
+    font-family:var(--font-7);
+    font-size:2.2em;
     line-height:40px;
+    letter-spacing:3px;
 }
 .jd__title p{
     font-size:1.1em;
-    font-family:var(--font-2);
+    font-family:var(--font-7);
     color:#FF7A7A;
     text-shadow:1px 1px 1px rgba(0,0,0,.1);
     height:22px;
     width:100%;
+    height:32px;
+    background:#872323;
     position:relative;
 }
-.jd__title p:before, 
-.jd__title p:after{
-    width:160px;
-    height:1px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#FF7A7A;
-}
-.jd__title p:before{
-    top:0;
-}
-.jd__title p:after{
-    bottom:0;
-}
+
 @keyframes mover{
     0%{
         margin-left:0;

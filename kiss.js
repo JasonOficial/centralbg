@@ -2,7 +2,7 @@
 var canvas = document.getElementById("jd__canvas"),
     ctx = canvas.getContext("2d"),
     multObj = [],
-    maxObj = 100,
+    maxObj = 70,
     widthObj = 40,
     heightObj = 32,
     arrTxt = [
@@ -13,10 +13,8 @@ var canvas = document.getElementById("jd__canvas"),
         ],
     arrFont = [
         //'20px Aclonica',
-        '16px Combo',
-        '25px Courgette',
-        '18px Cookie',
-        '30px Niconne'
+        '26px Fredoka One',
+        '25px Concert One'
     ],
     arrColor = [
         '#E24343',
@@ -54,6 +52,8 @@ function itemObj(x, y, w, h, vx, vy){
         ctx.fillStyle = this.colorTxt;
         ctx.textAlign = "center";
         ctx.fillText(this.txt, this.x, this.y, this.w, this.h);
+        ctx.strokeStyle = "rgba(0,0,0,.5)";
+        ctx.strokeText(this.txt, this.x, this.y, this.w, this.h);
     
     }
     
