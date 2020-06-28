@@ -27,7 +27,7 @@ function clock(){
     var h = new Date().getHours(),
         m = new Date().getMinutes(),
         s = new Date().getSeconds(),
-        d = new Date().getDay(),
+        d = new Date().getDate(),
         mo = new Date().getMonth(),
         y = new Date().getYear(),
         monthArr = ["January","February","March","April","May","June","July","August","September","October","November","December"];
