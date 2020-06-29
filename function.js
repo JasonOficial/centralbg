@@ -29,7 +29,7 @@ function clock(){
         s = new Date().getSeconds(),
         d = new Date().getDate(),
         mo = new Date().getMonth(),
-        y = new Date().getYear(),
+        y = new Date().getFullYear(),
         monthArr = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     if(s < 10){s = '0' + s;}else{s = s;}
     if(m < 10){m = '0' + m;}else{m = m;}
@@ -41,7 +41,7 @@ function clock(){
     secEl.innerHTML = s;
     dEl.innerHTML = d;
     mEl.innerHTML = monthArr[mo];
-    secEl.innerHTML = s;
+    yEl.innerHTML = y;
 }
 
 var interval = setInterval(clock, 1000);
