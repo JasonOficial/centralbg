@@ -44,6 +44,11 @@ function initClock(){
 
  window.setInterval(initClock, 1000);
 
+window.addEventListener('resize', function(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
 function Sfere(x, y, radius, vx, vy){
     this.x = x;
     this.y = y;
