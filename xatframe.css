@@ -1,0 +1,221 @@
+body{
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,.1) 1px, transparent 2px, transparent 10px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 2px, transparent 10px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.15) 1px, transparent 2px, transparent 82px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 2px, transparent 82px),
+        linear-gradient(to bottom right, #717171, #A4A4A4), #A4A4A4;
+    min-height:100vh;
+    overflow:hidden;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --font-1: 'Dancing Script', cursive;
+    --font-2: 'Parisienne', cursive;
+    --font-3: 'Sacramento', cursive;
+}
+:before, 
+:after{
+    content:'';
+    position:absolute;
+}
+span{
+    display:inline-block;
+}
+ul{
+    list-style:none;
+}
+.jd__app{
+    width:1248px;
+    height:100vh;
+    position:relative;
+    margin:0 auto;
+    display:flex;
+    font-family:var(--font-1);
+    color:#000;
+    font-size:1em;
+    z-index:100;
+}
+.jd__box{
+    width:220px;
+    height:270px;
+    position:absolute;
+    top:188px;
+    left:15px;
+}
+aside{
+    width:250px;
+    position:relative;
+}
+header{
+    width:100%;
+    height:40px;
+    border-radius:4px 4px 0 0;
+    background:linear-gradient(#404751, #1A1E21);
+    box-shadow:0 4px 5px rgba(0,0,0,.1);
+}
+header h1{
+    width:100%;
+    height:40px;
+    line-height:40px;
+    padding-left:20px;
+    color:#FFF;
+    font-weight:300;
+    position:relative;
+}
+header[data-tooltip]:before{
+    content:attr(data-tooltip);
+    width:90px;
+    height:24px;
+    background:#A9CF3C;
+    border-radius:3px;
+    color:#000;
+    text-align:center;
+    line-height:24px;
+    top:-10px;
+    left:85px;
+}
+header:after{
+    width:0;
+    height:0;
+    border-top:solid 10px #A9CF3C;
+    border-left:solid 10px transparent;
+    border-right:solid 10px transparent;
+    top:10px;
+    left:90px;
+}
+article{
+    width:220px;
+    height:240px;
+    background:#F7F7F7;
+    position:relative;
+    padding:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+.jd__box:before, 
+.jd__box:after{
+    height:100%;
+    width:216px;
+    background:#FFF;
+    box-shadow:0 3px 5px rgba(0,0,0,.1);
+    left:2px;
+    bottom:-13px;
+    z-index:-1;
+}
+.jd__box:after{
+    width:212px;
+    left:4px;
+    bottom:-16px;
+    z-index:-2;
+}
+article:before{
+    width:1px;
+    height:100%;
+    background:#EEACBB;
+    top:0;
+    left:30px;
+}
+article:after{
+    width:100%;
+    height:1px;
+    background:#A7C2E8;
+    left:0;
+    top:20px;
+    box-shadow:0 28px #A7C2E8, 0 56px #A7C2E8, 0 84px #A7C2E8, 
+        0 112px #A7C2E8, 0 140px #A7C2E8, 0 168px #A7C2E8, 0 196px #A7C2E8;
+}
+ul{
+    position:absolute;
+    width:100%;
+    top:20px;
+    left:5px;
+}
+ul li{
+    width:100%;
+    height:28px;
+    display:flex;
+}
+ul li:last-child{
+    margin-top:28px;
+}
+li i{
+    width:24px;
+    height:20px;
+    color:#A9CF3C;
+    margin-top:5px;
+    display:flex;
+}
+li span{
+    line-height:28px;
+    padding-left:10px;
+}
+li:nth-child(1) span,
+li:nth-child(3) span{
+    font-size:1.4em;
+}
+article p{
+    position:absolute;
+    bottom:25px;
+    right:10px;
+}
+section{
+    width:748px;
+    position:relative;
+}
+.jd__inner{
+    width:728px;
+    height:486px;
+    background:#A9CF3C;
+    position:absolute;
+    top:80px;
+    left:10px;
+}
+.jd__inner:after{
+    width:75%;
+    height:50px;
+    border-radius:50%;
+    background:#000;
+    filter:blur(25px);
+    left:12.5%;
+    bottom:-25px;
+    opacity:.8;
+    z-index:-1;
+}
+.jd__letter{
+    width:250px;
+    height:40px;
+    border:solid 1px #000;
+    position:absolute;
+    top:100px;
+    left:260px;
+}
+.jd__letter:before{
+    width:0;
+    left:0;
+    border-left:solid 10px #000;
+    border-top:solid 10px transparent;
+    border-bottom:solid 10px transparent;
+    top:10px;
+    left:0;
+}
+.jd__letter:after{
+    width:100px;
+    height:1px;
+    background:#000;
+    left:0;
+    bottom:-4px;
+}
+.jd__letter p{
+    line-height:38px;
+    padding-left:20px;
+    font-size:1.4em;
+}
+canvas{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-1;
+}
