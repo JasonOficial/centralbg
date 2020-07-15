@@ -84,7 +84,7 @@ aside{
     height:486px;
     position:absolute;
     top:80px;
-    left:10;
+    left:10px;
     background:radial-gradient(600px 600px ellipse at -100px center, #EEE 600px, transparent 602px), #FDCF00;
 }
 .jd__inner:before{
