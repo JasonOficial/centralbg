@@ -1,0 +1,133 @@
+body{
+    background:linear-gradient(to bottom right, #0B3580, #84CAF9);
+    height:100vh;
+    overflow:hidden;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --font-1: 'Oswald', sans-serif;
+    --font-2: 'Open Sans', sans-serif;
+}
+:before, 
+:after{
+    content:'';
+    position:absolute;
+}
+canvas{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+.jd__app{
+    width:100%;
+    height:100vh;
+    position:relative;
+    font-family:var(--font-1);
+    font-size:1em;
+    background:linear-gradient(135deg, #00275B 300px, transparent 301px);
+}
+.jd__container{
+    width:1248px;
+    height:100vh;
+    display:flex;
+    position:relative;
+    margin:0 auto;
+    z-index:1000;
+}
+aside{
+    width:250px;
+    position:relative;
+}
+ul{
+    width:240px;
+    height:auto;
+    position:absolute;
+    top:80px;
+    list-style:none;
+}
+ul li{
+    width:240px;
+    height:50px;
+    border-radius:25px;
+    margin-bottom:10px;
+    background:#0D1E28;
+    display:flex;
+    padding:5px;
+    color:#0E53AE;
+    line-height:40px;
+    position:relative;
+}
+ul li:first-child{
+    color:#FFF;
+}
+li[data-tooltip]:before{
+    content:attr(data-tooltip);
+    width:80px;
+    height:24px;
+    border-radius:12px;
+    background:#0E53AE;
+    color:#FFF;
+    line-height:24px;
+    font-size:.75em;
+    text-align:center;
+    top:-10px;
+    left:50px;
+}
+.material-icons{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#172E3B;
+    color:#FFF;
+    margin-right:8px;
+}
+section{
+    width:748px;
+    position:relative;
+}
+.jd__inner{
+    width:728px;
+    height:486px;
+    position:absolute;
+    top:80px;
+    left:10px;
+    background:radial-gradient(650px 650px ellipse at -100px center, #3A70BA 650px, transparent 652px), #E7E7E7;
+}
+.jd__inner:before{
+    width:60%;
+    height:60px;
+    background:#000;
+    border-radius:50%;
+    filter:blur(35px);
+    left:20%;
+    bottom:-25px;
+    z-index:-1;
+}
+.jd__letter{
+    width:240px;
+    height:100px;
+    position:absolute;
+    top:120px;
+    left:300px;
+}
+.jd__logo{
+    width:70px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.jd__logo img{
+    width:100%;
+}
+.jd__letter span{
+    color:#FFF;
+}
