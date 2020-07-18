@@ -26,7 +26,9 @@ var arrTxt = [
     'JEFFINHO',
     'GAEL',
     'MAUZIM',
-    'RAZ'
+    'RAZ',
+    'FADA',
+    'NARA'
 ],
     arrFont = [
     '12px Big Shoulders Display', 
