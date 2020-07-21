@@ -25,7 +25,6 @@ var arrTxt = [
     'DAY',
     'JEFFINHO',
     'GAEL',
-    'MAUZIM',
     'RAZ',
     'FADA',
     'NARA'
