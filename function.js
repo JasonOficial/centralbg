@@ -1,171 +1,121 @@
-var canvas_one = document.getElementById('jd__canvas_one');
-var ctx_one = canvas_one.getContext('2d');
-var canvas_two = document.getElementById('jd__canvas_two');
-var ctx_two = canvas_two.getContext('2d');
-var txt = document.getElementById('title');
-var hr = document.getElementById('hour');
-var mn = document.getElementById('min');
-var sc = document.getElementById('sec');
-var item = document.createElement('h4');
-var box = document.getElementById('box');
+var canvas = document.getElementById("jd__canvas");
+var dEl = document.getElementById("jd__day");
+var mEl = document.getElementById("jd__month");
+var yEl = document.getElementById("jd__year");
+var hEl = document.getElementById("jd__hours");
+var minEl = document.getElementById("jd__min");
+var secEl = document.getElementById("jd__sec");
 
-var bubbles_one = [];
-var bubbles_two = [];
-var gradient_one = ctx_one.createLinearGradient(0, 0, innerHeight/2, innerWidth);
-gradient_one.addColorStop(0, 'rgba(255,255,255,1)');
-gradient_one.addColorStop(1, '#FFF');
-var color = '#FF0058';
-var deg = 6;
-var sw = '';
-var text = [
-    'JasonOficial',
-    'xatSpace',
-    'xatFrame',
-    'Player',
-    'Graphics'
-];
-var _txt = [];
-var count = 0;
+var ctx = canvas.getContext("2d"),
+    color = "#00A2FF",
+    multObj = [], 
+    maxCircle = 150,
+    maxRadius = 3,
+    lineColor = "rgba(0,162,255,.2)";
 
-for(var i = 0; i < 10; i++){
-    sw += (sw ? ',' : '') + -i * 1 + 'px ' + i * 1 + 'px 0 #444';
-}
-txt.style.textShadow = sw;
 
-function clock(){
-    var date = new Date();
-    var hour = date.getHours() * 30;
-    var min = date.getMinutes() * deg;
-    var sec = date.getSeconds() * deg;
-    
-    hr.style.transform = 'rotateZ('+(hour + (min/12))+'deg)';
-    mn.style.transform = 'rotateZ('+(min)+'deg)';
-    sc.style.transform = 'rotateZ('+(sec)+'deg)';
-}
 
-window.setInterval(clock, 1000);
-
-canvas_one.width = window.innerWidth;
-canvas_one.height = window.innerHeight;
-
-canvas_two.width = window.innerWidth;
-canvas_two.height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 window.addEventListener('resize', function(){
-    canvas_one.width = window.innerWidth;
-    canvas_one.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
 
-    canvas_two.width = window.innerWidth;
-    canvas_two.height = window.innerHeight;
-})
+function clock(){
+    var h = new Date().getHours(),
+        m = new Date().getMinutes(),
+        s = new Date().getSeconds(),
+        d = new Date().getDate(),
+        mo = new Date().getMonth(),
+        y = new Date().getFullYear(),
+        monthArr = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    if(s < 10){s = '0' + s;}else{s = s;}
+    if(m < 10){m = '0' + m;}else{m = m;}
+    if(h < 10){h = '0' + h;}else{h = h;}
+    if(d < 10){d = '0' + d;}else{d = d;}
+    
+    hEl.innerHTML = h;
+    minEl.innerHTML = m;
+    secEl.innerHTML = s;
+    dEl.innerHTML = d;
+    mEl.innerHTML = monthArr[mo];
+    yEl.innerHTML = y;
+}
 
-function Bubble(color, speed){
-    this.radius = (Math.random() * 150 + 30);
-    this.life = true;
-    this.x = (Math.random() * window.innerWidth);
-    this.y = (Math.random() * 20) + window.innerHeight + this.radius;
-    this.vx = (Math.random() * 4) - 2;
-    this.vy = ((Math.random() * 0.0002) + 0.001) + speed;
-    this.vr = 0;
+var interval = setInterval(clock, 1000);
+
+function Circle(x, y, radius, dx, dy){
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.dx = dx;
+    this.dy = dy;
     this.color = color;
-}
-
-Bubble.prototype.update = function(){
-    this.vy += 0.00001;
-    this.vr += 0.02;
-    this.y -= this.vy;
-    this.x += this.vx;
     
-    if(this.radius > 1){
-        this.radius -= this.vr;
+    this.drawCircle = function (){
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
     }
-    if(this.radius <= 1){
-        this.life = false;
-    }
-}
-
-Bubble.prototype.draw = function(ctx){
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    ctx.fillStyle = this.color;
-    ctx.fill();
-}
-
-function handleBubbles(){
-    for(var i = bubbles_one.length - 1; i >= 0; i--){
-        bubbles_one[i].update();
-        if(!bubbles_one[i].life){
-            bubbles_one.splice(i, 1);
+    
+    this.update = function (){
+        if(this.x + this.radius > innerWidth || this.x - this.radius < 0){
+            this.dx = - this.dx;
         }
-    }
-    for(var j = bubbles_two.length - 1; j >= 0; j--){
-        bubbles_two[j].update();
-        if(!bubbles_two[j].life){
-            bubbles_two.splice(j, 1);
+        if(this.y + this.radius > innerHeight || this.y - this.radius < 0){
+            this.dy = - this.dy;
         }
-    }
-    if(bubbles_one.length < (window.innerWidth / 4)){
-        addBubblesOne();
-    }
-    if(bubbles_two.length < (window.innerWidth / 12)){
-        addBubblesTwo();
+        
+        this.x += this.dx;
+        this.y += this.dy;
+        
+        this.drawCircle();
     }
 }
 
-function addBubblesOne(){
-    bubbles_one.push(new Bubble(gradient_one, 4.8));
-}
-
-function addBubblesTwo(){
-    bubbles_two.push(new Bubble(color, 3.3));
-}
-
-function loop(){
-    ctx_one.clearRect(0, 0, canvas_one.width, canvas_one.height);
-    ctx_two.clearRect(0, 0, canvas_two.width, canvas_two.height);
-    
-    
-    handleBubbles();
-    
-    for(var i = bubbles_one.length - 1; i >= 0; i--){
-        bubbles_one[i].draw(ctx_one);
+function init(){
+    for(var i = 0; i < maxCircle; i++){
+        var radius = Math.floor(1 + Math.random() * maxRadius),
+            x = Math.random() * (innerWidth - radius * 2) - radius,
+            y = Math.random() * (innerHeight - radius * 2) - radius,
+            dx = (Math.random() - 0.5),
+            dy = (Math.random() - 0.5);
+        
+        multObj.push(new Circle(x, y, radius, dx, dy));
     }
-    for(var j = bubbles_two.length - 1; j >= 0; j--){
-        bubbles_two[j].draw(ctx_two);
-    }
-    
-    requestAnimationFrame(loop);
 }
 
-window.addEventListener('load', loop);
-
-box.appendChild(item);
-
-function lettering(elem){
-    var objs = elem.innerHTML.split('');
-    elem.innerHTML = '';
-    objs.forEach(function(obj, i){
-        setTimeout(function(){
-            elem.innerHTML += obj;
-        }, 200 * i);
-    });
-}
-
-function reading(){
-    text.forEach(function(arr, j){
-        setTimeout(function(){
-            item.innerHTML = arr;
-            lettering(item);
-            count++;
-
-            if(count === text.length){
-                setTimeout(function(){
-                    count = 0;
-                    this.reading();
-                }, 10000);
+function connect(){
+    for(var j = 0; j < multObj.length; j++){
+        for(var l = j; l < multObj.length; l++){
+            var dist = ((multObj[j].x - multObj[l].x) * (multObj[j].x - multObj[l].x))
+            + ((multObj[j].y - multObj[l].y) * (multObj[j].y - multObj[l].y));
+            if(dist < (canvas.width/10) * (canvas.height/10)){
+                ctx.strokeStyle = lineColor;
+                ctx.beginPath();
+                ctx.lineWidth = 1;
+                ctx.moveTo(multObj[j].x, multObj[j].y);
+                ctx.lineTo(multObj[l].x, multObj[l].y);
+                ctx.stroke();
             }
-        }, 10000 * j);
-    });
+        }
+    }
 }
 
-reading();
+function animate(){
+    requestAnimationFrame(animate);
+    
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    
+    for(var i = 0; i < multObj.length; i++){
+        multObj[i].update();
+    }
+    connect();
+}
+
+init();
+animate();
+//alert("!ok");

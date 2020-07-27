@@ -1,63 +1,58 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
     <head>
         <meta charset="utf-8">
         <title>xatFrame</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200&family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+        <meta name="author" content="Jason - xat.com/CentralDosPlayers">
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Fredericka+the+Great&family=Nixie+One&family=Teko&family=Trochut&family=Wallpoet&family=Yellowtail&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="jd__app">
-            <div class="jd__scene">
-                <aside>
-                    <div class="jd__xat">
-                        <h1 class="jd__title" id="title">xat.com</h1>
+            <aside class="jd__aside">
+                <div class="jd__box">
+                    <div class="jd__header">
+                        <span>XAT</span>
+                        <p>Central Dos Players</p>
                     </div>
-                </aside>
-                <aside>
+                    <div class="jd__content">
+                        <div class="jd__col">
+                            <h1>Jason</h1>
+                            <p>Codes And Graphics</p>
+                        </div>
+                        <div class="jd__col jd__date">
+                            <div class="jd__day" id="jd__day"></div>
+                            <div class="jd__month" id="jd__month"></div>
+                            <div class="jd__year" id="jd__year"></div>
+                        </div>
+                    </div>
                     <div class="jd__clock">
-                        <div class="jd__inner_clock">
-                            <div class="jd__hour" id="hour">
-                                <div class="jd__hr" id="hr"></div>
-                            </div>
-                            <div class="jd__min" id="min">
-                                <div class="jd__mn" id="mn"></div>
-                            </div>
-                            <div class="jd__sec" id="sec">
-                                <div class="jd__sc" id="sc"></div>
-                            </div>
+                        <div class="jd__block">
+                            <h1 id="jd__hours"></h1>
+                            <span>HOURS</span>
                         </div>
-                    </div>
-                </aside>
-            </div>
-            <div class="jd__container">
-                <div class="jd__inner">
-                    <div class="jd__inner__xat"></div>
-                    <div class="jd__letter">
-                        <div class="jd__logo">
-                            <img src="https://i.postimg.cc/BbFX0NR2/logo-xat.png">
+                        <div class="jd__block">
+                            <h1 id="jd__min"></h1>
+                            <span>MINUTE</span>
                         </div>
-                        <div class="jd__box" id="box"></div>
+                        <div class="jd__block">
+                            <h1 id="jd__sec"></h1>
+                            <span>SECOND</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </aside>
+            <section class="jd__container">
+                <div class="jd__inner">
+                    <div class="jd__letter">
+                        <p>Welcome to my xat</p>
+                    </div>
+                </div>
+            </section>
         </div>
-        <canvas id="jd__canvas_one"></canvas>
-        <canvas id="jd__canvas_two"></canvas>
-        <svg>
-            <defs>
-                <filter id="goo">
-                    <feGaussianBlur in ="sourceGraphic" stdDeviation="10" result="blur"/>
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0
-                                                                  0 1 0 0 0
-                                                                  0 0 1 0 0
-                                                                  0 0 0 20 -10"
-                                                                  result="goo"/>
-                    <feBlend in="SourceGraphic" in2="goo"/>
-                </filter>
-            </defs>
-        </svg>
+        <canvas id="jd__canvas"></canvas>
         <script src="function.js"></script>
     </body>
 </html>
