@@ -51,10 +51,13 @@ canvas_one.height = window.innerHeight;
 canvas_two.width = window.innerWidth;
 canvas_two.height = window.innerHeight;
 
+window.addEventListener('resize', function(){
+    canvas_one.width = window.innerWidth;
+    canvas_one.height = window.innerHeight;
 
-
-
-
+    canvas_two.width = window.innerWidth;
+    canvas_two.height = window.innerHeight;
+})
 
 function Bubble(color, speed){
     this.radius = (Math.random() * 150 + 30);
