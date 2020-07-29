@@ -15,19 +15,16 @@ var arrTxt = [
     'ALEZINHA',
     'ROGER',
     'VINI',
-    'BRU',
     'KORY',
     'SURF',
-    'GHOST',
     'LETRUX',
     'MISSY',
-    'KIRITO',
     'DAY',
     'JEFFINHO',
     'GAEL',
     'RAZ',
     'FADA',
-    'NARA'
+    'RAZ'
 ],
     arrFont = [
     '12px Big Shoulders Display', 
