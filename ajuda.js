@@ -50,81 +50,76 @@ function reading(){
     });
 }
 
-function Ball(x, y, radius, vx, vy){
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-    this.vx = vx;
-    this.vy = vy;
-    
-    this.draw = function(){
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        ctx.fillStyle = '#ffc501';
-        ctx.fill();
-        
-        ctx.beginPath();
-        ctx.arc(this.x, this.y + this.radius/4.5, this.radius * 0.6, 0, Math.PI * 0.75, false);
-        ctx.strokeStyle = '#FF4D4D';
-        ctx.stroke();
-        
-        ctx.beginPath();
-        ctx.arc(this.x - this.radius/3, this.y - this.radius/3, this.radius * 0.2, 0, Math.PI * 2);
-        ctx.fillStyle = "#fff";
-        ctx.fill();
-        
-        ctx.beginPath();
-        ctx.arc(this.x + this.radius/3, this.y - this.radius/3, this.radius * 0.2, 0, Math.PI * 2);
-        ctx.fillStyle = "#fff";
-        ctx.fill();
-        
-        ctx.beginPath();
-        ctx.arc(this.x - this.radius/3, this.y - this.radius/3, this.radius * 0.1, 0, Math.PI * 2);
-        ctx.fillStyle = "#000";
-        ctx.fill();
-        
-        ctx.beginPath();
-        ctx.arc(this.x + this.radius/3, this.y - this.radius/3, this.radius * 0.1, 0, Math.PI * 2);
-        ctx.fillStyle = "#000";
-        ctx.fill();
-    }
-    
-    this.update = function(){
-        if(this.x + this.radius > innerWidth || this.x - this.radius < 0){
-            this.vx = - this.vx;
-        }
-        if(this.y + this.radius > innerHeight || this.y - this.radius < 0){
-            this.vy = -this.vy;
-        }
-        this.x += this.vx;
-        this.y += this.vy;
-        
-        this.draw();
-    }
+var img = new Image();
+img.src = 'http://u.cubeupload.com/jasondesign/angelsmallp.png';
+img.onLoad = function(){
+    console.log('carregando imagem');
 }
+var objs = [];
 
 function init(){
     objs = [];
-    for(var i = 0; i < 50; i++){
-        var radius = Math.floor(10 + Math.random() * 25);
-        var x = Math.random() * (innerWidth - radius * 2);
-        var y = Math.random() * (innerHeight - radius * 2);
-        var vx = (Math.random() - 0.5);
-        var vy = (Math.random() - 0.5);
+    for(var i = 0; i < 20; i++){
+        var px = Math.random() * (innerWidth - 192);
+        var vx = (Math.random() * 1);
+        var vy = (Math.random() * 1);
         
-        objs.push(new Ball(x, y, radius, vx, vy));
+        objs.push(new Sprites(img, px, vx, vy));
     }
 }
 
-function animate(){
-    requestAnimationFrame(animate);
+function loop(){
+    requestAnimationFrame(loop, canvas);
+    
     ctx.clearRect(0, 0, innerWidth, innerHeight);
     for(var i in objs){
         var obj = objs[i];
+        obj.draw(ctx);
         obj.update();
     }
-    
 }
+
+function Sprites(img, px, vx, vy){
+    this.cordX = 0;
+    this.cordY = 0;
+    this.width = 96;
+    this.height = 100;
+    this.posX = px;
+    this.posY = innerHeight + this.height;
+    this.img = img;
+    this.count = 0;
+    this.vx = vx;
+    this.vy = vy;
+    
+    this.draw = function(ctx){
+        ctx.drawImage(this.img, this.cordX, this.cordY, this.width, this.height, this.posX, this.posY, this.width, this.height);
+        
+        this.mov();
+    }
+    
+    this.update = function (){
+        if(this.posX + this.width > innerWidth || this.posX < 0){
+            this.vx = - this.vx;
+        }
+        if(this.posY + this.height > innerHeight){
+            this.vy = + this.vy;
+        }else if(this.posY + this.height < 0){
+            this.posY = innerHeight + this.height;
+            this.posY += this.vy;
+        }
+        this.posX += this.vx;
+        this.posY -= this.vy;
+    }
+    
+    this.mov = function(){
+        this.count++;
+        if(this.count >= 50){
+            this.count = 0;
+        }
+        this.cordX = Math.floor(this.count / 5) * this.width;
+    }
+}
+
+loop();
 init();
-animate();
 reading();
