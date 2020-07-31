@@ -121,13 +121,14 @@ canvas{
     line-height:70px;
     background:url(https://i.postimg.cc/BbFX0NR2/logo-xat.png)left center no-repeat;
     background-size:94px;
-    padding-left:90px;
-    font-weight:lighter;
+    padding-left:85px;
+    font-weight:300;
     font-size:4em;
+    font-family:var(--font-2);
 }
 .jd__box{
     width:100%;
-    height:50px;
+    height:70px;
     border:solid 1px #FEB750;
     margin-top:5px;
     text-align:center;

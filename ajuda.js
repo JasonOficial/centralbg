@@ -4,9 +4,11 @@ var box = document.querySelector('#box');
 var ctx = canvas.getContext('2d');
 
 var text = [
-    'Jason',
-    'Designer',
-    'Agora o xat.com esta com nova versão html5'
+    'O novo xat é moderno, leve e seguro.',
+    'E o melhor de tudo, não precisa baixar nada! Zero downloads.',
+    'O mesmo xat.com só que agora melhor, e no mesmo lugar: xat.com',
+    'Seja bem vindo ao chat oficial de ajuda. Faça sua pergunta!',
+    'Fundo by JasonOficial'
 ];
 var objs = [];
 var maxObj = 70;
@@ -44,9 +46,9 @@ function reading(){
                 setTimeout(function(){
                     count = 0;
                     this.reading();
-                }, 10000);
+                }, 15000);
             }
-        }, 10000 * j);
+        }, 15000 * j);
     });
 }
 
