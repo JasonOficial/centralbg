@@ -1,19 +1,26 @@
-var canvas = document.getElementById("jd__canvas");
-var dEl = document.getElementById("jd__day");
-var mEl = document.getElementById("jd__month");
-var yEl = document.getElementById("jd__year");
-var hEl = document.getElementById("jd__hours");
-var minEl = document.getElementById("jd__min");
-var secEl = document.getElementById("jd__sec");
+let canvas = document.querySelector('canvas');
+let box = document.getElementById('box');
+let h1 = document.createElement('h1');
+let ctx = canvas.getContext('2d');
+let txtArr = [
+    'Já tem um xatFrame? O que está esperando pra adquirir um.',
+    'Jason Códigos e Gráficos',
+    'xatSpace 4 mil xats',
+    'Player Flash para seu xat',
+    'Player HTML5 em breve disponível'
+];
+let objs = [];
+let color = [
+    '#34343F',
+    '#FFF',
+    '#F991B3',
+    '#FFCF31',
+    '#31B9FF',
+    '#DB5252'
+];
+let count = 0;
 
-var ctx = canvas.getContext("2d"),
-    color = "#00A2FF",
-    multObj = [], 
-    maxCircle = 150,
-    maxRadius = 3,
-    lineColor = "rgba(0,162,255,.2)";
-
-
+box.appendChild(h1);
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -21,101 +28,91 @@ canvas.height = window.innerHeight;
 window.addEventListener('resize', function(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-});
+}, false);
 
-function clock(){
-    var h = new Date().getHours(),
-        m = new Date().getMinutes(),
-        s = new Date().getSeconds(),
-        d = new Date().getDate(),
-        mo = new Date().getMonth(),
-        y = new Date().getFullYear(),
-        monthArr = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    if(s < 10){s = '0' + s;}else{s = s;}
-    if(m < 10){m = '0' + m;}else{m = m;}
-    if(h < 10){h = '0' + h;}else{h = h;}
-    if(d < 10){d = '0' + d;}else{d = d;}
-    
-    hEl.innerHTML = h;
-    minEl.innerHTML = m;
-    secEl.innerHTML = s;
-    dEl.innerHTML = d;
-    mEl.innerHTML = monthArr[mo];
-    yEl.innerHTML = y;
+function initTxt(item){
+    let text = item.innerHTML.split('');
+    item.innerHTML = '';
+    text.forEach(function(txt, i){
+        setTimeout(function(){
+            item.innerHTML += txt;
+        }, 200 * i);
+    });
 }
 
-var interval = setInterval(clock, 1000);
+function reading(){
+    txtArr.forEach(function(_txt, j){
+        setTimeout(function(){
+            h1.innerHTML = _txt;
+            initTxt(h1);
+            count++;
+            
+            if(count === txtArr.length){
+                setTimeout(function(){
+                    count = 0;
+                    this.reading();
+                }, 15000);
+            }
+        }, 15000 * j);
+    });
+}
 
-function Circle(x, y, radius, dx, dy){
-    this.x = x;
+function Cubo(y, vy){
+    this.size = Math.floor(10 + Math.random() * 50);
+	this.w = this.size;
+    this.h = this.size;
+    this.x = Math.random() * (innerWidth - this.w * 2) + this.w;
     this.y = y;
-    this.radius = radius;
-    this.dx = dx;
-    this.dy = dy;
-    this.color = color;
+    this.vy = vy;
+    this.rot = 0;
+    this.vel = 1;
+    this.line = Math.floor(0.25 + Math.random() * 20);
+    this.color = color[(Math.floor(Math.random() * color.length))];
     
-    this.drawCircle = function (){
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        ctx.fillStyle = this.color;
-        ctx.fill();
+    this.draw = function(){
+    	ctx.save();
+        ctx.lineWidth = this.line;
+        ctx.strokeStyle = this.color;
+        ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
+        ctx.rotate(this.rot);
+        ctx.strokeRect(-this.w / 2, -this.h / 2, this.w, this.h);
+        ctx.stroke();
+        ctx.restore();
     }
     
-    this.update = function (){
-        if(this.x + this.radius > innerWidth || this.x - this.radius < 0){
-            this.dx = - this.dx;
-        }
-        if(this.y + this.radius > innerHeight || this.y - this.radius < 0){
-            this.dy = - this.dy;
+    
+    this.update = function(){
+    	this.rot += Math.PI / 180 * this.vel;
+        
+        if(this.y + (this.h * 2) < 0){
+            this.y = innerHeight + this.h;
+            this.y -= this.vy;
         }
         
-        this.x += this.dx;
-        this.y += this.dy;
-        
-        this.drawCircle();
+        this.y -= this.vy;
+        this.draw();
+    }
+}
+
+function mult(){
+    objs = [];
+    for(var i = 0; i < 20; i++){
+        var y = 100;
+        var vy = (Math.random() + 1);
+        objs.push(new Cubo(y, vy));
     }
 }
 
 function init(){
-    for(var i = 0; i < maxCircle; i++){
-        var radius = Math.floor(1 + Math.random() * maxRadius),
-            x = Math.random() * (innerWidth - radius * 2) - radius,
-            y = Math.random() * (innerHeight - radius * 2) - radius,
-            dx = (Math.random() - 0.5),
-            dy = (Math.random() - 0.5);
-        
-        multObj.push(new Circle(x, y, radius, dx, dy));
-    }
-}
-
-function connect(){
-    for(var j = 0; j < multObj.length; j++){
-        for(var l = j; l < multObj.length; l++){
-            var dist = ((multObj[j].x - multObj[l].x) * (multObj[j].x - multObj[l].x))
-            + ((multObj[j].y - multObj[l].y) * (multObj[j].y - multObj[l].y));
-            if(dist < (canvas.width/10) * (canvas.height/10)){
-                ctx.strokeStyle = lineColor;
-                ctx.beginPath();
-                ctx.lineWidth = 1;
-                ctx.moveTo(multObj[j].x, multObj[j].y);
-                ctx.lineTo(multObj[l].x, multObj[l].y);
-                ctx.stroke();
-            }
-        }
-    }
-}
-
-function animate(){
-    requestAnimationFrame(animate);
-    
+    requestAnimationFrame(init);
     ctx.clearRect(0, 0, innerWidth, innerHeight);
     
-    for(var i = 0; i < multObj.length; i++){
-        multObj[i].update();
+    for(var i in objs){
+        var obj = objs[i];
+        obj.update();
     }
-    connect();
+    
 }
-
+reading();
+mult();
 init();
-animate();
-//alert("!ok");
