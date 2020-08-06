@@ -3,6 +3,7 @@ var hour = document.getElementById("hour");
 var min = document.getElementById("min");
 var sec = document.getElementById("sec");
 var ctx = canvas.getContext("2d");
+var txt = document.getElementById('txt');
 var gradientColor = ctx.createLinearGradient(0, 0, innerWidth, 0);
 gradientColor.addColorStop(0, 'rgba(255,255,255,.3)');
 gradientColor.addColorStop(0.5, '#F4D815');
@@ -10,6 +11,11 @@ gradientColor.addColorStop(1, '#1C0E39');
 var arrObj = [],
     maxRadius = 3,
     maxBall = 150;
+var count = 0;
+var text = [
+    'A diversão começa aqui!',
+    'Sala de bate papo para fazer novas amizades!'
+];
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -105,5 +111,31 @@ function initClock(){
 
  window.setInterval(initClock, 1000);
 
+function initTxt(elem){
+    let objs = elem.innerHTML.split('');
+    elem.innerHTML = '';
+    objs.forEach(function(obj, i){
+        setTimeout(function(){
+            elem.innerHTML += obj;
+        }, 200 * i);
+     });
+}
+
+function reading(){
+    text.forEach(function(_txt, j){
+        setTimeout(function(){
+            txt.innerHTML = _txt;
+            initTxt(txt);
+            count++;
+            if(count === text.length){
+                setTimeout(function(){
+                    count = 0;
+                    this.reading();
+                }, 10000);
+            }
+        }, 10000 * j);
+    })
+}
+reading();
 init();
 animate();
