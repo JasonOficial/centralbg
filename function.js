@@ -6,8 +6,8 @@ let txtArr = [
     'Já tem um xatFrame? O que está esperando pra adquirir um.',
     'Jason Códigos e Gráficos',
     'xatSpace 4 mil xats',
-    'Player Flash para seu xat',
-    'Player HTML5 em breve disponível'
+    'Vendas de Player Flash suspensa',
+    'Player HTML5 disponível vários MOdelos'
 ];
 let objs = [];
 let color = [
