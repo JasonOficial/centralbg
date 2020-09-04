@@ -7,7 +7,7 @@ let txtArr = [
     'Jason Códigos e Gráficos',
     'xatSpace 4 mil xats',
     'Vendas de Player Flash suspensa',
-    'Player HTML5 disponível vários MOdelos'
+    'Player HTML5 disponível vários Modelos'
 ];
 let objs = [];
 let color = [
