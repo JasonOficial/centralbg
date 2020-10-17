@@ -53,8 +53,8 @@ canvas{
     width:728px;
     height:486px;
     position:absolute;
-    top:80px;
-    left:0;
+    top:94px;
+    left:4px;
     background:radial-gradient(620px 620px ellipse at -50px center, #31B9FF 620px, transparent 621px), #15171D;
 }
 .jd__inner:after{
