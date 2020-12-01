@@ -65,19 +65,19 @@ height: 145px;
 -webkit-animation: bgscroll 370s infinite linear;
 }
 
-.topwrap1 {
-color: #F2FAFE;
-background:url(https://img.xatblog.net/image/HxnnRA.png) top center repeat-x;
-padding: 0;
-margin:0;
-height: 165px;
-border-bottom: 0 solid #333;
-margin: auto auto;
-vertical-align: middle;
+.jd-topwrap {
+    color: #F2FAFE;
+    background:url(https://img.xatblog.net/image/HxnnRA.png) top center repeat-x;
+    padding: 0;
+    margin:0;
+    height: 165px;
+    border-bottom: 0 solid #333;
+    margin: auto auto;
+    vertical-align: middle;
 }
 
 
-.topwrap1 {
+.jd-topwrap {
 -moz-animation: bgscroll 750s infinite linear;
 -ms-animation: bgscroll 750s infinite linear;
 -o-animation: bgscroll 750s infinite linear;
@@ -134,4 +134,21 @@ vertical-align: middle;
   max-width: 1200px;
   margin:0 auto;
   text-align:left
+}
+
+@media screen and (min-width: 920px){
+    body{
+        background:linear-gradient(#3A6CB1, #AFD1DD, #F2FAFE 450px);
+    }
+    .jd-content{
+        height:450px;
+    }
+}
+@media screen and (min-width: 1920px){
+    body{
+        background:linear-gradient(#3A6CB1, #AFD1DD, #F2FAFE 580px);
+    }
+    .jd-content{
+        height:580px;
+    }
 }
