@@ -1,0 +1,193 @@
+body{
+    background:linear-gradient(90deg, #000 50%, #d90000 50.2%), #D90000;
+    min-height:100vh;
+    overflow:hidden;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --font-1: 'Oswald', sans-serif;
+    --font-2: 'Roboto', sans-serif;
+    --yellow: #D90000;
+}
+:before, 
+:after{
+    content:'';
+    position:absolute;
+}
+canvas{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+.jd__app{
+    width:100%;
+    height:100vh;
+    position:relative;
+    font-size:16px;
+    color:#FFF;
+    font-family:var(--font-2);
+    background:linear-gradient(-135deg, var(--yellow) 280px, transparent 281px),
+        linear-gradient(-135deg, #FFF 300px, transparent 301px), 
+        linear-gradient(-135deg, #000 330px, transparent 331px);
+}
+.jd__app:after{
+    width:0;
+    height:0;
+    border-bottom:solid 180px #C80000;
+    border-right:solid 100vw transparent;
+    left:0;
+    bottom:0;
+}
+.jd__aside{
+    width:250px;
+    position:fixed;
+    top:0;
+    left:20px;
+    height:100vh;
+}
+.jd__clock{
+    width:100%;
+    height:115px;
+    position:relative;
+    top:200px;
+    display:flex;
+    justify-content:space-between;
+}
+.jd__box{
+    width:80px;
+    height:105px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background:#FFF;
+}
+.jd__box:after{
+    width:100%;
+    height:100%;
+    box-shadow:0 0 0 5px rgba(0,0,0,.1) inset;
+    top:0;
+    left:0;
+}
+.jd__box h1{
+    width:80px;
+    height:80px;
+    background:linear-gradient(-45deg, #D90000, #8C0000);
+    box-shadow:0 5px 5px rgba(0,0,0,.4);
+    font-size:3.2em;
+    color:#222;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.jd__box span{
+    font-size:.85em;
+    line-height:25px;
+    color:#222;
+}
+.jd__container{
+    width:728px;
+    height:100vh;
+    position:relative;
+    margin:0 auto;
+    z-index:1000;
+}
+.jd__inner{
+    width:728px;
+    height:486px;
+    position:absolute;
+    top:94px;
+    left:4px;
+    background:radial-gradient(620px 620px ellipse at -80px center, #F8F8F8 620px, transparent 621px), var(--yellow);
+}
+.jd__inner:after{
+    width:75%;
+    height:50px;
+    border-radius:50%;
+    background:#000;
+    filter:blur(25px);
+    left:12.5%;
+    bottom:-20px;
+    z-index:-1;
+}
+.jd__inner__xat{
+    position:absolute;
+    width:524px;
+    height:325px;
+    border-radius:8px;
+    background:linear-gradient(to bottom right, rgba(255,255,255,.3), rgba(255,255,255,.1));
+    top:9px;
+    left:11px;
+}
+.jd__inner__xat:before,
+.jd__inner__xat:after{
+    border-radius:8px;
+    background:linear-gradient(to bottom right, rgba(255,255,255,.3), rgba(255,255,255,.1));
+}
+.jd__inner__xat:before{
+    width:171px;
+    height:325px;
+    top:0;
+    left:calc(100% + 12px);
+}
+.jd__inner__xat:after{
+    width:481px;
+    height:71px;
+    left:0;
+    top:calc(100% + 72px);
+}
+.jd__letter{
+    width:230px;
+    height:140px;
+    position:relative;
+    top:80px;
+    left:270px;
+    padding:5px 10px;
+    background:#222;
+    text-align:center;
+}
+.jd__letter:before{
+    width:0;
+    left:0;
+    border-top:solid 25px #222;
+    border-right:solid 25px transparent;
+    bottom:-25px;
+    left:10px;
+}
+.jd__letter:after{
+    width:230px;
+    height:140px;
+    border:solid 1px var(--yellow);
+    top:5px;
+    left:5px;
+}
+.jd__letter h2{
+    font-family:var(--font-1);
+    text-transform:uppercase;
+    font-size:1.5em;
+    font-weight:400;
+    line-height:45px;
+}
+.jd__block{
+    width:100%;
+    height:50px;
+    border:solid 1px var(--yellow);
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+.jd__letter h1{
+    line-height:25px;
+    width:100%;
+    font-size:.85em;
+    font-weight:300;
+}
+.jd__letter span{
+    display:block;
+    line-height:30px;
+}
