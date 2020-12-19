@@ -1,0 +1,190 @@
+body{
+    background:url(https://i.postimg.cc/vHjSTqxj/top-snow-pattern.png)top left repeat-x,
+        radial-gradient(#B20000, #660000);
+    min-height:100vh;
+    overflow:hidden;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --font-1: 'Lobster Two',cursive;
+    --font-2: 'Sniglet', cursive;
+}
+:before,:after{
+    content:'';
+    position:absolute;
+}
+.jd-main{
+    width:1280px;
+    height:100vh;
+    position:relative;
+    margin:0 auto;
+    font-family:var(--font-1);
+    color:#FFF;
+}
+.jd-left,
+.jd-right{
+    position:absolute;
+    width:276px;
+    height:100vh;
+    top:0;
+}
+.jd-left{
+    left:0;
+    text-align:center;
+}
+.jd-right{
+    right:0;
+}
+.jd-center{
+    width:728px;
+    height:100vh;
+    position:absolute;
+    left:276px;
+}
+.jd-tree{
+    width:276px;
+    height:415px;
+    position:absolute;
+    bottom:80px;
+}
+.jd-tree img{
+    width:100%;
+}
+.jd-title{
+    width:420px;
+    height:170px;
+    display:flex;
+    flex-direction:column;
+    margin-top:300px;
+    margin-left:calc(50% - 210px);
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    border-bottom:double #fff;
+}
+.jd-title:before{
+    width:50%;
+    height:1px;
+    background:#fff;
+    top:0;
+}
+.jd-title:after{
+    width:56%;
+    height:1px;
+    background:#fff;
+    top:2px;
+}
+.jd-title h2{
+    font-size:8em;
+    line-height:0.9em;
+    font-weight:300;
+    text-shadow:3px 3px #000;
+}
+.jd-title span{
+    position:relative;
+    transform:translateY(30px);
+}
+.jd-scene{
+    width:100%;
+    height:100vh;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+.jd-bg{
+    width:100%;
+    height:100vh;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.jd-bg:nth-child(5){
+    background-image:url(https://i.postimg.cc/9W9sRhpB/bg-1.png);
+    background-position:center bottom;
+    background-size:120%;
+    background-repeat:no-repeat;
+}
+.jd-bg:nth-child(4){
+    background-image:url(https://i.postimg.cc/vb86h7cJ/bg-2-1.png);
+    background-position:center bottom;
+    background-size:120%;
+    background-repeat:no-repeat;
+}
+.jd-bg:nth-child(3){
+    background-image:url(https://i.postimg.cc/pVWS6nt0/bg-3.png);
+    background-position:center bottom;
+    background-size:120%;
+    background-repeat:no-repeat;
+}
+.jd-bg:nth-child(2){
+    background-image:url(https://i.postimg.cc/51SC8KN5/bg-4-1.png);
+    background-position:center bottom;
+    background-size:120%;
+    background-repeat:no-repeat;
+}
+.jd-bg:nth-child(1){
+    background-image:url(https://i.postimg.cc/vMvFtGdq/bg-5.png);
+    background-position:center bottom;
+    background-size:120%;
+    background-repeat:no-repeat;
+}
+.jd-left h1{
+    margin-top:94px;
+    display:flex;
+    justify-content:center;
+    width:100%;
+    font-weight:300;
+}
+.jd-count{
+    width:100%;
+    height:auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+.jd-box{
+    width:110px;
+    height:110px;
+    background-image:url(https://i.postimg.cc/Kc0WSvGm/klipartz.png);
+    background-size:cover;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin-top:10px;
+}
+.jd-box h2{
+    font-weight:300;
+}
+canvas{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+@media screen and (min-width:1920px){
+    .jd-bg:nth-child(5){
+        background-size:100%;
+    }
+    .jd-bg:nth-child(4){
+        background-size:100%;
+    }
+    .jd-bg:nth-child(3){
+        background-size:100%;
+    }
+    .jd-bg:nth-child(2){
+        background-size:100%;
+    }
+    .jd-bg:nth-child(1){
+        background-size:100%;
+    }
+    .jd-tree{
+        bottom:180px;
+    }
+}
