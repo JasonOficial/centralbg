@@ -2,6 +2,13 @@ let canvas = document.querySelector('canvas');
 let box = document.getElementById('box');
 let h1 = document.createElement('h1');
 let ctx = canvas.getContext('2d');
+let particles = [];
+let txt = [
+    "♫",
+    "♩",
+    "♬",
+    "♪"
+];
 let txtArr = [
     'Já tem um xatFrame? O que está esperando pra adquirir um.',
     'Jason Códigos e Gráficos',
@@ -19,6 +26,7 @@ let color = [
     '#DB5252'
 ];
 let count = 0;
+let maxParticle = 20;
 
 box.appendChild(h1);
 
@@ -57,62 +65,56 @@ function reading(){
     });
 }
 
-function Cubo(y, vy){
-    this.size = Math.floor(10 + Math.random() * 50);
-	this.w = this.size;
-    this.h = this.size;
-    this.x = Math.random() * (innerWidth - this.w * 2) + this.w;
-    this.y = y;
-    this.vy = vy;
-    this.rot = 0;
-    this.vel = 1;
-    this.line = Math.floor(0.25 + Math.random() * 20);
-    this.color = color[(Math.floor(Math.random() * color.length))];
-    
-    this.draw = function(){
-    	ctx.save();
-        ctx.lineWidth = this.line;
-        ctx.strokeStyle = this.color;
-        ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
-        ctx.rotate(this.rot);
-        ctx.strokeRect(-this.w / 2, -this.h / 2, this.w, this.h);
-        ctx.stroke();
-        ctx.restore();
-    }
-    
-    
-    this.update = function(){
-    	this.rot += Math.PI / 180 * this.vel;
-        
-        if(this.y + (this.h * 2) < 0){
-            this.y = innerHeight + this.h;
-            this.y -= this.vy;
-        }
-        
-        this.y -= this.vy;
-        this.draw();
-    }
+function Particle(){
+    this.x = canvas.width / 2;
+    this.y = canvas.height / 2;
+    this.speedX = Math.random() * 6 - 3;
+    this.speedY = Math.random() * 6 - 3;
+    this.color = color[Math.floor(Math.random() * color.length)];//"hsla("+parseInt(Math.random()*360, 10)+",100%,50%, 0.8)";
+    this.txt = txt[Math.floor(Math.random() * txt.length)];
 }
 
-function mult(){
-    objs = [];
-    for(var i = 0; i < 20; i++){
-        var y = 100;
-        var vy = (Math.random() + 1);
-        objs.push(new Cubo(y, vy));
+Particle.prototype.draw = function(){
+    ctx.fillStyle = this.color;
+    ctx.font = "25px Arial";
+    ctx.fillText(this.txt, this.x, this.y);
+}
+
+Particle.prototype.update = function(){
+
+    if(this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0){
+        this.x = canvas.width / 2;
+        this.y = canvas.height / 2;
     }
+
+    this.x += this.speedX;
+    this.y += this.speedY;
 }
 
 function init(){
-    requestAnimationFrame(init);
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
-    
-    for(var i in objs){
-        var obj = objs[i];
-        obj.update();
+    for(var i = 0; i < maxParticle; i++){
+        particles.push(new Particle());
     }
-    
 }
-reading();
-mult();
+
+//var cubo = new Particle();
+//cubo.update();
+
+function animate(){
+    window.requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+    for(var i in particles){
+        particles[i].draw();
+        particles[i].update();
+
+        console.log(particles.length);
+        
+    }
+}
+
 init();
+animate();
+console.log(canvas.height);
+reading();
+
