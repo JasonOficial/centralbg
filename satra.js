@@ -1,26 +1,17 @@
-let canvas = document.querySelector('canvas');
-let box = document.getElementById('box');
-let h1 = document.createElement('h1');
-let ctx = canvas.getContext('2d');
-let txtArr = [
-    'Já tem um xatFrame? O que está esperando pra adquirir um.',
-    'Jason Códigos e Gráficos',
-    'xatSpace 4 mil xats',
-    'Player Flash para seu xat',
-    'Player HTML5 em breve disponível'
-];
-let objs = [];
-let color = [
-    '#34343F',
-    '#FFF',
-    '#F991B3',
-    '#FFCF31',
-    '#31B9FF',
-    '#DB5252'
-];
-let count = 0;
+var canvas = document.querySelector('canvas');
+var text = document.querySelector('h1');
+var ctx = canvas.getContext("2d"),
+    opacit = Math.floor(1 + Math.random() * 3),
+    color = [
+        'rgba(255,255,255,0.'+opacit+')',
+        'rgba(0,0,0,0.'+opacit+')',
+    ],
+    maxRadius = 20,
+    multObj = [],
+    maxBall = 200;
 
-//box.appendChild(h1);
+
+
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -28,91 +19,66 @@ canvas.height = window.innerHeight;
 window.addEventListener('resize', function(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-}, false);
+});
 
-function initTxt(item){
-    let text = item.innerHTML.split('');
-    item.innerHTML = '';
-    text.forEach(function(txt, i){
-        setTimeout(function(){
-            item.innerHTML += txt;
-        }, 200 * i);
-    });
-}
-
-function reading(){
-    txtArr.forEach(function(_txt, j){
-        setTimeout(function(){
-            h1.innerHTML = _txt;
-            initTxt(h1);
-            count++;
-            
-            if(count === txtArr.length){
-                setTimeout(function(){
-                    count = 0;
-                    this.reading();
-                }, 15000);
-            }
-        }, 15000 * j);
-    });
-}
-
-function Cubo(y, vy){
-    this.size = Math.floor(10 + Math.random() * 50);
-	this.w = this.size;
-    this.h = this.size;
-    this.x = Math.random() * (innerWidth - this.w * 2) + this.w;
+function itemObj(x, y, radius, dx, dy){
+    this.x = x;
     this.y = y;
-    this.vy = vy;
-    this.rot = 0;
-    this.vel = 1;
-    this.line = Math.floor(0.25 + Math.random() * 20);
-    this.color = color[(Math.floor(Math.random() * color.length))];
+    this.radius = radius;
+    this.dx = dx;
+    this.dy = dy;
+    this.color = color[Math.floor(Math.random() * color.length)];
     
-    this.draw = function(){
-    	ctx.save();
-        ctx.lineWidth = this.line;
-        ctx.strokeStyle = this.color;
-        ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
-        ctx.rotate(this.rot);
-        ctx.strokeRect(-this.w / 2, -this.h / 2, this.w, this.h);
-        ctx.stroke();
-        ctx.restore();
+    this.drawCircle = function (){
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
     }
     
-    
-    this.update = function(){
-    	this.rot += Math.PI / 180 * this.vel;
-        
-        if(this.y + (this.h * 2) < 0){
-            this.y = innerHeight + this.h;
-            this.y -= this.vy;
+    this.update = function (){
+        if(this.y + this.radius > innerHeight || this.y - this.radius < 0){
+            this.dy = - this.dy;
+        }
+        if(this.x > innerWidth + this.radius){
+            this.dx = - this.dx;
+        }else if(this.x + this.radius < 0){
+            this.x = innerWidth + this.radius;
+            this.dx = - this.dx;
         }
         
-        this.y -= this.vy;
-        this.draw();
-    }
-}
-
-function mult(){
-    objs = [];
-    for(var i = 0; i < 20; i++){
-        var y = 100;
-        var vy = (Math.random() + 1);
-        objs.push(new Cubo(y, vy));
+        this.y += this.dy;
+        this.x -= this.dx;
+        
+        this.drawCircle();
     }
 }
 
 function init(){
-    requestAnimationFrame(init);
+    multObj = [];
+    for(var i = 0; i < maxBall; i++){
+        var radius = Math.random() * maxRadius,
+            x = innerWidth + radius,
+            y = Math.random() * (innerHeight - radius * 2) + radius,
+            dx = (Math.random() - 0.5),
+            dy = (Math.random() - 0.5);
+        
+        multObj.push(new itemObj(x, y, radius, dx, dy));
+    }
+}
+//var circle = new itemObj(innerWidth + 30, 100, 30, 1, 1);
+
+function animate(){
+    requestAnimationFrame(animate);
+    
     ctx.clearRect(0, 0, innerWidth, innerHeight);
     
-    for(var i in objs){
-        var obj = objs[i];
-        obj.update();
+    for(var i = 0; i < multObj.length; i++){
+        multObj[i].update();
     }
-    
+    //circle.update();
+
 }
-reading();
-mult();
+
 init();
+animate();
